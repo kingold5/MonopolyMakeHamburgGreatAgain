@@ -76,5 +76,25 @@ export const challengesData = {
     "Take a photo with the impressive Rathaus",
     "Record a video of the city hall square",
     "Take a selfie with the golden statues"
+  ],
+  16: [
+    "Take a photo with your favorite animal",
+    "Record a video of the animal feeding time",
+    "Take a selfie at the zoo entrance"
+  ],
+  17: [
+    "Take a photo with the HSV stadium",
+    "Record a video of the football atmosphere",
+    "Take a selfie wearing blue and white"
+  ],
+  18: [
+    "Take a photo of the unique Chilehaus architecture",
+    "Record a video walking around the building",
+    "Take a selfie with the brick facade"
+  ],
+  19: [
+    "Take a photo of the Elbe beach view",
+    "Record a video of the sunset over the water",
+    "Take a selfie with your feet in the sand"
   ]
 };

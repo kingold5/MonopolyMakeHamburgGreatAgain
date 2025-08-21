@@ -110,5 +110,33 @@ export const boardData = [
     description: "City hall with stunning architecture",
     icon: "🏛️",
     color: "bg-amber-500"
+  },
+  {
+    id: 16,
+    name: "Tierpark Hagenbeck",
+    description: "Famous zoo and animal park",
+    icon: "🦁",
+    color: "bg-emerald-500"
+  },
+  {
+    id: 17,
+    name: "HSV Volksparkstadion",
+    description: "Home of Hamburger SV",
+    icon: "🏟️",
+    color: "bg-blue-700"
+  },
+  {
+    id: 18,
+    name: "Chilehaus",
+    description: "Iconic brick expressionist building",
+    icon: "🔺",
+    color: "bg-red-600"
+  },
+  {
+    id: 19,
+    name: "Blankenese Beach",
+    description: "Sandy Elbe river beach",
+    icon: "🏖️",
+    color: "bg-yellow-400"
   }
 ];

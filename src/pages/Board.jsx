@@ -125,7 +125,7 @@ const Board = ({ user }) => {
 
       {/* Game Board */}
       <div className="card">
-        <div className="grid grid-cols-4 gap-2">
+        <div className="grid grid-cols-5 gap-2">
           {boardData.map((square, index) => {
             const isVisited = visitedSquares.has(index);
             const isCurrentPosition = playerPosition === index;

@@ -1,6 +1,4 @@
 import { useState } from 'react';
-import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
-import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { storage, db } from '../firebase';
 import { Camera, Video, Upload, X, Check } from 'lucide-react';
 
@@ -40,13 +38,13 @@ const ChallengeModal = ({ challenge, onClose, user }) => {
     setError('');
 
     try {
-      // Upload file to Firebase Storage
-      const fileRef = ref(storage, `submissions/${user.uid}/${Date.now()}_${file.name}`);
-      const uploadResult = await uploadBytes(fileRef, file);
-      const downloadURL = await getDownloadURL(uploadResult.ref);
+      // Upload file to Storage (works with both real Firebase and demo)
+      const fileRef = storage.ref(`submissions/${user.uid}/${Date.now()}_${file.name}`);
+      const uploadResult = await fileRef.uploadBytes(file);
+      const downloadURL = await uploadResult.ref.getDownloadURL();
 
-      // Save metadata to Firestore
-      await addDoc(collection(db, 'submissions'), {
+      // Save metadata to Firestore (works with both real Firebase and demo)
+      await db.collection('submissions').addDoc({
         userId: user.uid,
         userName: user.displayName || user.email,
         userPhotoURL: user.photoURL,
@@ -57,7 +55,7 @@ const ChallengeModal = ({ challenge, onClose, user }) => {
         fileType: file.type,
         fileName: file.name,
         votes: 0,
-        timestamp: serverTimestamp()
+        timestamp: new Date() // Use regular Date for demo compatibility
       });
 
       setUploadSuccess(true);

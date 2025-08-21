@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { signInWithPopup } from 'firebase/auth';
 import { auth, googleProvider } from '../firebase';
 import { Chrome } from 'lucide-react';
 
@@ -12,7 +11,7 @@ const Login = () => {
     setError('');
     
     try {
-      await signInWithPopup(auth, googleProvider);
+      await auth.signInWithPopup(googleProvider);
     } catch (error) {
       console.error('Error signing in with Google:', error);
       setError('Failed to sign in with Google. Please try again.');

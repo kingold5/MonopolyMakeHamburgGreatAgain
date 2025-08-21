@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { collection, query, orderBy, onSnapshot, doc, updateDoc, increment } from 'firebase/firestore';
+// Import functions will be mocked in demo mode
 import { db } from '../firebase';
 import { Heart, MessageCircle, Calendar, MapPin } from 'lucide-react';
 
@@ -9,10 +9,11 @@ const Feed = ({ user }) => {
   const [votedSubmissions, setVotedSubmissions] = useState(new Set());
 
   useEffect(() => {
-    // Subscribe to submissions collection
-    const q = query(collection(db, 'submissions'), orderBy('votes', 'desc'));
+    // Subscribe to submissions collection (works with both real Firebase and demo)
+    const submissionsCollection = db.collection('submissions');
+    const q = submissionsCollection.query().orderBy('votes', 'desc');
     
-    const unsubscribe = onSnapshot(q, (snapshot) => {
+    const unsubscribe = q.onSnapshot((snapshot) => {
       const submissionsData = snapshot.docs.map(doc => ({
         id: doc.id,
         ...doc.data()
@@ -30,9 +31,9 @@ const Feed = ({ user }) => {
     }
 
     try {
-      const submissionRef = doc(db, 'submissions', submissionId);
-      await updateDoc(submissionRef, {
-        votes: increment(1)
+      const submissionRef = db.doc('submissions', submissionId);
+      await submissionRef.updateDoc({
+        votes: { increment: 1 }
       });
       
       setVotedSubmissions(prev => new Set([...prev, submissionId]));

@@ -1,5 +1,4 @@
 import { Link, useLocation } from 'react-router-dom';
-import { signOut } from 'firebase/auth';
 import { auth } from '../firebase';
 import { LogOut, User } from 'lucide-react';
 
@@ -8,7 +7,7 @@ const Navbar = ({ user }) => {
 
   const handleSignOut = async () => {
     try {
-      await signOut(auth);
+      await auth.signOut();
     } catch (error) {
       console.error('Error signing out:', error);
     }

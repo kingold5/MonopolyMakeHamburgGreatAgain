@@ -1,7 +1,6 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { onAuthStateChanged } from 'firebase/auth';
-import { auth } from './firebase';
+import { auth, onAuthStateChanged, isDemoMode } from './firebase';
 import Navbar from './components/Navbar';
 import Board from './pages/Board';
 import Feed from './pages/Feed';
@@ -35,6 +34,14 @@ function App() {
   return (
     <Router>
       <div className="min-h-screen bg-gray-50">
+        {isDemoMode && (
+          <div className="bg-blue-100 border-b border-blue-200 p-3 text-center">
+            <p className="text-blue-800 text-sm">
+              🎮 <strong>Demo Mode</strong> - No Firebase setup required! 
+              <span className="ml-2">📝 To use real Firebase, update the config in src/firebase.js</span>
+            </p>
+          </div>
+        )}
         <Navbar user={user} />
         <main className="container mx-auto px-4 py-8">
           <Routes>
